@@ -86,8 +86,8 @@ export default function Contact() {
               <div>
                 <h3 className="font-gtexpbd text-[9px] tracking-widest uppercase text-gray-500 mb-4">Social</h3>
                 <div className="flex flex-col gap-4">
-                  <a href="https://instagram.com/habeeel" target="_blank" rel="noreferrer" className="font-gtexprg text-sm text-white hover:text-gray-400 transition-colors w-max">
-                    @habeeel
+                  <a href="https://www.instagram.com/haaabbel/" target="_blank" rel="noreferrer" className="font-gtexprg text-sm text-white hover:text-gray-400 transition-colors w-max">
+                    @haaabbel
                   </a>
                 </div>
               </div>
