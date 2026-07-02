@@ -21,7 +21,8 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 w-full z-[200] bg-black/80 backdrop-blur-md px-6 md:px-10 py-6 md:py-10 flex justify-between items-center text-white">
+    <>
+      <header className={`fixed top-0 w-full z-[200] px-6 md:px-10 py-6 md:py-10 flex justify-between items-center text-white transition-all duration-300 ${isOpen ? 'bg-transparent' : 'bg-black/80 backdrop-blur-md'}`}>
       <Link href="/" className="font-gtextbd text-lg md:text-xl tracking-wide z-50">
         HAABEL
       </Link>
@@ -47,27 +48,38 @@ export default function Header() {
         {isOpen ? <X size={28} /> : <Menu size={28} />}
       </button>
 
+      </header>
+
       {/* Mobile Nav Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center space-y-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[190] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center space-y-12"
           >
-            {navLinks.map((link) => (
-              <Link 
-                key={link.path} 
-                href={link.path}
-                className={`text-3xl tracking-widest hover:text-gray-300 transition-colors ${pathname === link.path ? 'font-gtexpbd text-white' : 'font-gtexprg text-gray-400'}`}
+            {navLinks.map((link, index) => (
+              <motion.div
+                key={link.path}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 + 0.1 }}
               >
-                {link.name}
-              </Link>
+                <Link 
+                  href={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`text-4xl tracking-[0.2em] hover:text-white transition-colors uppercase ${
+                    pathname === link.path ? 'font-gtexpbd text-white' : 'font-gtexprg text-gray-500'
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              </motion.div>
             ))}
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
